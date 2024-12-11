@@ -24,8 +24,9 @@ int del(void *data, char **args)
     linked_list_t *prev = temp;
     int i = 0;
 
-    if (storage->next == NULL) {
-        free(storage);
+    if (temp != NULL && temp->id == my_atoi(args[i])) {
+        prev = temp->next;
+        free(temp);
         return 0;
     }
     while (args[i] != NULL) {
