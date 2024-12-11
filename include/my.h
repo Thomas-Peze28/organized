@@ -46,6 +46,16 @@ int check_lettre(const char *str, int i);
 int check_number(const char *str, int i);
 int my_getsign(char const *str);
 int my_putnbr_base(int nbr, char const *base);
+int my_put_float(double n, int pre);
+int my_put_unsigned(long int nb);
+int my_put_long(unsigned long int nb);
+double my_round(double n, int pres);
+int nota_sc_e(int dot);
+int my_putnbr_e(double n, long pre);
+int nota_sc_cont(int dot, int nbcara);
+double posi(double n);
+int my_putnbr_sc(double n, long pre);
+int my_printf(const char *format, ...);
 int my_atoi(const char *str);
 
 

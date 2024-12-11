@@ -42,7 +42,7 @@ void init_first_node(linked_list_t *storage, linked_list_t *new_node)
     storage->type = new_node->type;
     storage->name = new_node->name;
     storage->next = NULL;
-    printf("%s n°0 - \"%s\" added.\n", new_node->type, new_node->name);
+    my_printf("%s n°0 - \"%s\" added.\n", new_node->type, new_node->name);
 }
 
 void add_to_end(linked_list_t *storage, linked_list_t *new_node)
@@ -70,7 +70,7 @@ int add(void *data, char **args)
             init_first_node(storage, new_node);
         } else {
             add_to_end(storage, new_node);
-            printf("%s n°%d - \"%s\" added.\n"
+            my_printf("%s n°%d - \"%s\" added.\n"
                 , new_node->type, new_node->id, new_node->name);
         }
         i += 2;

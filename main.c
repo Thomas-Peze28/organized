@@ -12,7 +12,8 @@
 void disp_debug(linked_list_t *list)
 {
     while (list != NULL) {
-        printf("DEBUG : %s n°%d - \"%s\"\n", list->type, list->id, list->name);
+        my_printf("DEBUG : %s n°%d - \"%s\"\n"
+            , list->type, list->id, list->name);
         list = list->next;
     }
 }
@@ -24,16 +25,13 @@ int del(void *data, char **args)
     linked_list_t *prev = temp;
     int i = 0;
 
-    if (temp != NULL && temp->id == my_atoi(args[i])) {
-        prev = temp->next;
-        free(temp);
-        return 0;
-    }
     while (args[i] != NULL) {
         while (temp != NULL && temp->id != my_atoi(args[i])) {
             prev = temp;
             temp = temp->next;
         }
+        my_printf("%s n°%d - \"%s\" deleted\n"
+            , temp->type, temp->id, temp->name);
         prev->next = temp->next;
         free(temp);
         i++;
@@ -51,7 +49,7 @@ int disp(void *data)
     linked_list_t *temp = ((linked_list_t *)data);
 
     while (temp != NULL && temp->type != NULL) {
-        printf("%s n°%d - \"%s\"\n", temp->type, temp->id, temp->name);
+        my_printf("%s n°%d - \"%s\"\n", temp->type, temp->id, temp->name);
         temp = temp->next;
     }
     return 0;
