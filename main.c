@@ -21,6 +21,7 @@ int del(void *data, char **args)
 {
     linked_list_t *storage = ((linked_list_t *)data);
     linked_list_t *temp = storage;
+    linked_list_t *prev = temp;
     int i = 0;
 
     if (storage->next == NULL) {
@@ -28,10 +29,12 @@ int del(void *data, char **args)
         return 0;
     }
     while (args[i] != NULL) {
-        printf("ID RECHERCHE : %d\n", my_atoi(args[i]));
-        while (temp->next != NULL) {
+        while (temp != NULL && temp->id != my_atoi(args[i])) {
+            prev = temp;
             temp = temp->next;
         }
+        prev->next = temp->next;
+        free(temp);
         i++;
     }
     return 0;
