@@ -30,7 +30,7 @@ linked_list_t *create_new_node(linked_list_t *storage, char *type, char *name)
         return NULL;
     }
     new_node->id = count_nodes(storage);
-    new_node->type = my_strdup(type);
+    new_node->type = my_strupcase(my_strdup(type));
     new_node->name = my_strdup(name);
     new_node->next = NULL;
     return new_node;

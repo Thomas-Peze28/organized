@@ -9,8 +9,8 @@
 
 char *my_strupcase(char *str)
 {
-    for (int count = 0; count <= my_strlen(str); count++) {
-        if (str[count] >= 'a' && str[count] <= 'z' && str[count] != ' ') {
+    for (int count = 0; count < my_strlen(str); count++) {
+        if (str[count] >= 'a' && str[count] <= 'z') {
             str[count] = str[count] - 32;
         }
     }
