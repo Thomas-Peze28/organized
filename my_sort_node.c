@@ -9,14 +9,6 @@
 #include "include/bootstrap.h"
 #include "libshell/shell.h"
 
-void disp_debug(linked_list_t *list)
-{
-    while (list != NULL) {
-        my_my_printf("DEBUG : %s n°%d - \"%s\"\n"
-            , list->type, list->id, list->name);
-        list = list->next;
-    }
-}
 
 int sort(void *data, char **args)
 {
@@ -34,24 +26,5 @@ int sort(void *data, char **args)
         my_printf("TEMP : %d\n", temp->id);
         my_printf("SUIV : %d\n", temp->next->id);
     }
-    return 0;
-}
-
-int disp(void *data)
-{
-    linked_list_t *temp = ((linked_list_t *)data);
-
-    while (temp != NULL && temp->type != NULL) {
-        my_my_printf("%s n°%d - \"%s\"\n", temp->type, temp->id, temp->name);
-        temp = temp->next;
-    }
-    return 0;
-}
-
-int main(void)
-{
-    linked_list_t *storage = malloc(sizeof(linked_list_t));
-
-    workshop_shell(storage);
     return 0;
 }
