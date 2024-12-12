@@ -15,6 +15,7 @@ void add_to_end(linked_list_t *storage, linked_list_t *new_node);
 int del_handling(void *data, char **args);
 int is_good_type(char *str);
 int add_handling(void *data, char **args);
+void disp_debug(linked_list_t *list);
 
 
 // To be implemented

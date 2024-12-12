@@ -59,5 +59,4 @@ int my_printf(const char *format, ...);
 int my_atoi(const char *str);
 int my_str_eq(char *str1, char *str2);
 
-
 #endif /* MY_ */

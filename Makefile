@@ -9,6 +9,7 @@ SRC	=	main.c	\
 		my_add_node.c	\
 		my_del_node.c	\
 		my_count_nodes.c	\
+		my_sort_node.c	\
 		handling.c	\
 
 NAME	=	organized
