@@ -12,6 +12,10 @@ int count_nodes(void *data);
 linked_list_t *create_new_node(linked_list_t *storage, char *type, char *name);
 void init_first_node(linked_list_t *storage, linked_list_t *new_node);
 void add_to_end(linked_list_t *storage, linked_list_t *new_node);
+int del_handling(void *data, char **args);
+int is_good_type(char *str);
+int add_handling(void *data, char **args);
+
 
 // To be implemented
 int add(void *data, char **args);

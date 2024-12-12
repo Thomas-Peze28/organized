@@ -18,29 +18,22 @@ void disp_debug(linked_list_t *list)
     }
 }
 
-int del(void *data, char **args)
+int sort(void *data, char **args)
 {
     linked_list_t *storage = ((linked_list_t *)data);
     linked_list_t *temp = storage;
     linked_list_t *prev = temp;
-    int i = 0;
 
-    while (args[i] != NULL) {
-        while (temp != NULL && temp->id != my_atoi(args[i])) {
+    for (int i = 0; i < count_nodes(data); i++) {
+        while (temp != NULL &&
+            temp->next != NULL && temp->next->id < temp->id) {
             prev = temp;
             temp = temp->next;
         }
-        my_printf("%s n°%d - \"%s\" deleted\n"
-            , temp->type, temp->id, temp->name);
-        prev->next = temp->next;
-        free(temp);
-        i++;
+        printf("PREV : %d\n", prev->id);
+        printf("TEMP : %d\n", temp->id);
+        printf("SUIV : %d\n", temp->next->id);
     }
-    return 0;
-}
-
-int sort(void *data, char **args)
-{
     return 0;
 }
 

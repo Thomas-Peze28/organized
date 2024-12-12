@@ -40,6 +40,7 @@ SRC	=	my_compute_power_rec.c	\
 		my_putnbr_e.c	\
 		my_printf.c	\
 		my_atoi.c	\
+		my_string_equal.c	\
 
 OBJ	=	$(SRC:.c=.o)
 

@@ -9,19 +9,6 @@
 #include "include/bootstrap.h"
 #include "libshell/shell.h"
 
-int count_nodes(void *data)
-{
-    linked_list_t *storage = ((linked_list_t *)data);
-    linked_list_t *temp = storage;
-    int count = 0;
-
-    while (temp != NULL) {
-        count++;
-        temp = temp->next;
-    }
-    return count;
-}
-
 linked_list_t *create_new_node(linked_list_t *storage, char *type, char *name)
 {
     linked_list_t *new_node = malloc(sizeof(linked_list_t));
@@ -61,11 +48,12 @@ int add(void *data, char **args)
     linked_list_t *new_node;
     int i = 0;
 
+    if (add_handling(data, args) == -1)
+        return 0;
     while (args[i] != NULL && args[i + 1] != NULL) {
         new_node = create_new_node(storage, args[i], args[i + 1]);
-        if (new_node == NULL) {
+        if (new_node == NULL)
             return -1;
-        }
         if (storage->type == NULL) {
             init_first_node(storage, new_node);
         } else {
