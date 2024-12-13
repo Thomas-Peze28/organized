@@ -8,6 +8,8 @@
 #ifndef BOOTSTRAP_H
     #define BOOTSTRAP_H
 
+    #define LIST linked_list_t
+
 typedef enum type {
     CHAR,
     STRING,
