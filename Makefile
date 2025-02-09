@@ -11,12 +11,15 @@ SRC	=	main.c	\
 		my_count_nodes.c	\
 		my_sort_node.c	\
 		handling.c	\
+		sorting_id.c	\
+		sorting_name.c	\
+		sorting_type.c	\
 
 NAME	=	organized
 
 OBJ	=	$(SRC:.c=.o)
 
-CFLAGS = -I./include -L./lib/my -lmy -Wall -Wextra
+CFLAGS = -I./include/ -L./lib/my -lmy -Wall -Wextra
 
 all: build_lib $(OBJ)
 	gcc -o $(NAME) $(OBJ) $(CFLAGS) libshell/libshell.a

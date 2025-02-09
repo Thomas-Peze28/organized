@@ -20,7 +20,8 @@ void disp_debug(linked_list_t *list)
 
 int disp(void *data)
 {
-    linked_list_t *temp = ((linked_list_t *)data);
+    linked_list_t **storage = (linked_list_t **)data;
+    linked_list_t *temp = *storage;
 
     while (temp != NULL && temp->type != NULL) {
         my_printf("%s n°%d - \"%s\"\n", temp->type, temp->id, temp->name);
@@ -35,6 +36,11 @@ int main(void)
 
     if (storage == NULL)
         return 84;
-    workshop_shell(storage);
+    storage->id = 0;
+    storage->type = NULL;
+    storage->name = NULL;
+    storage->next = NULL;
+    if (workshop_shell((void *)&storage) == 84)
+        return 84;
     return 0;
 }

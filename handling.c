@@ -27,27 +27,53 @@ int is_good_type(char *str)
         return 0;
     }
     my_printf("Type not recognized\n");
-    return -1;
+    return 84;
 }
 
-int add_handling(void *data, char **args)
+int count_args(char **args)
 {
     int i = 0;
-    int j = 0;
     int count_args = 0;
 
     while (args[i] != NULL) {
         count_args++;
         i++;
     }
-    if ((count_args % 2) != 0) {
-        my_printf("It must be a peer number of argument\n");
-        return -1;
+    return count_args;
+}
+
+int add_handling(void *data, char **args)
+{
+    int j = 0;
+    int count_arg = count_args(args);
+
+    if (count_arg == 0)
+        return 84;
+    if ((count_arg % 2) != 0) {
+        my_printf("It must be a pair number of argument\n");
+        return 84;
     }
     while (args[j] != NULL) {
-        if (is_good_type(args[j]) == -1)
-            return -1;
+        if (is_good_type(args[j]) == 84)
+            return 84;
         j += 2;
+    }
+    return 0;
+}
+
+int del_handling(void *data, char **args)
+{
+    linked_list_t **storage = (linked_list_t **)data;
+    int j = 0;
+
+    if (count_args(args) == 0)
+        return 84;
+    while (args[j] != NULL) {
+        if (my_atoi(args[j]) >= count_nodes(*storage)) {
+            my_printf("ID : %d isn't in list\n", my_atoi(args[j]));
+            return 84;
+        }
+        j++;
     }
     return 0;
 }

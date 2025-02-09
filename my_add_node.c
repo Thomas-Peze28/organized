@@ -40,26 +40,26 @@ void add_to_end(linked_list_t *storage, linked_list_t *new_node)
         temp = temp->next;
     }
     temp->next = new_node;
+    my_printf("%s n°%d - \"%s\" added.\n", new_node->type,
+        new_node->id, new_node->name);
 }
 
 int add(void *data, char **args)
 {
-    linked_list_t *storage = (linked_list_t *)data;
+    linked_list_t **storage = (linked_list_t **)data;
     linked_list_t *new_node;
     int i = 0;
 
-    if (add_handling(data, args) == -1)
-        return 0;
+    if (add_handling(data, args) == 84)
+        return 84;
     while (args[i] != NULL && args[i + 1] != NULL) {
-        new_node = create_new_node(storage, args[i], args[i + 1]);
+        new_node = create_new_node(*storage, args[i], args[i + 1]);
         if (new_node == NULL)
-            return -1;
-        if (storage->type == NULL) {
-            init_first_node(storage, new_node);
+            return 84;
+        if ((*storage)->type == NULL) {
+            init_first_node(*storage, new_node);
         } else {
-            add_to_end(storage, new_node);
-            my_printf("%s n°%d - \"%s\" added.\n"
-                , new_node->type, new_node->id, new_node->name);
+            add_to_end(*storage, new_node);
         }
         i += 2;
     }

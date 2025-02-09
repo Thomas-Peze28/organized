@@ -16,7 +16,14 @@ int del_handling(void *data, char **args);
 int is_good_type(char *str);
 int add_handling(void *data, char **args);
 void disp_debug(linked_list_t *list);
-
+int count_args(char **args);
+void swap_node(linked_list_t *a, linked_list_t *b);
+void sort_id(linked_list_t **storage);
+void sort_id_r(linked_list_t **storage);
+void sort_name(linked_list_t **storage);
+void sort_name_r(linked_list_t **storage);
+void sort_type(linked_list_t **storage);
+void sort_type_r(linked_list_t **storage);
 
 // To be implemented
 int add(void *data, char **args);

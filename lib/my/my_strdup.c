@@ -16,6 +16,6 @@ char *my_strdup(char const *src)
     for (int count = 0; count < my_strlen(src); count++) {
         dest[count] = src[count];
     }
-    dest[my_strlen(dest) + 1] = '\0';
+    dest[my_strlen(dest)] = '\0';
     return dest;
 }

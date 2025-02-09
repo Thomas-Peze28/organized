@@ -9,48 +9,69 @@
 #include "include/bootstrap.h"
 #include "libshell/shell.h"
 
-void swap_node(LIST **storage, LIST *temp, LIST *next, LIST *prev)
+int sort_id_choice(linked_list_t **storage, char **args, int node_count)
 {
-    if (prev == NULL) {
-        *storage = next;
-    } else {
-        prev->next = next;
+    if (count_args(args) == 2 && my_strcmp(args[0], "ID") == 0
+        && my_strcmp(args[1], "-r") == 0) {
+        for (int i = 0; i < node_count; i++) {
+            sort_id_r(storage);
+        }
+        return 0;
     }
-    temp->next = next->next;
-    next->next = temp;
+    if (count_args(args) == 1 && my_strcmp(args[0], "ID") == 0) {
+        for (int i = 0; i < node_count; i++) {
+            sort_id(storage);
+        }
+        return 0;
+    }
+    return 0;
 }
 
-void travel_nodes(LIST **storage)
+int sort_name_choice(linked_list_t **storage, char **args, int node_count)
 {
-    LIST *temp = *storage;
-    LIST *next;
-    LIST *prev = NULL;
-
-    while (temp != NULL && temp->next != NULL) {
-        next = temp->next;
-        if (temp->id < next->id) {
-            swap_node(storage, temp, next, prev);
-            prev = next;
-            temp = next->next;
-        } else {
-            prev = temp;
-            temp = temp->next;
+    if (count_args(args) == 2 && my_strcmp(args[0], "NAME") == 0
+        && my_strcmp(args[1], "-r") == 0) {
+        for (int i = 0; i < node_count; i++) {
+            sort_name_r(storage);
         }
+        return 0;
     }
+    if (count_args(args) == 1 && my_strcmp(args[0], "NAME") == 0) {
+        for (int i = 0; i < node_count; i++) {
+            sort_name(storage);
+        }
+        return 0;
+    }
+    return 0;
+}
+
+int sort_type_choice(linked_list_t **storage, char **args, int node_count)
+{
+    if (count_args(args) == 2 && my_strcmp(args[0], "TYPE") == 0
+        && my_strcmp(args[1], "-r") == 0) {
+        for (int i = 0; i < node_count; i++) {
+            sort_type_r(storage);
+        }
+        return 0;
+    }
+    if (count_args(args) == 1 && my_strcmp(args[0], "TYPE") == 0) {
+        for (int i = 0; i < node_count; i++) {
+            sort_type(storage);
+        }
+        return 0;
+    }
+    return 0;
 }
 
 int sort(void *data, char **args)
 {
-    LIST *storage = (LIST *)data;
-    int node_count = count_nodes(storage);
+    LIST **storage = (LIST **)data;
+    int node_count = count_nodes(*storage);
 
-    if (storage == NULL || storage->next == NULL)
+    if (*storage == NULL || (*storage)->next == NULL)
         return 0;
-    for (int i = 0; i < node_count; i++) {
-        travel_nodes(&storage);
-        data = storage;
-    }
-    my_printf("Résultat final:\n");
-    disp(data);
+    sort_id_choice(storage, args, node_count);
+    sort_name_choice(storage, args, node_count);
+    sort_type_choice(storage, args, node_count);
     return 0;
 }
